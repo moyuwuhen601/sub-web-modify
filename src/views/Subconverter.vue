@@ -4,14 +4,6 @@
       <el-col>
         <el-card>
           <div slot="header">
-            <svg-icon class="gayhub" icon-class="github" style="float:left" @click="goToProject"/>
-            <svg-icon class="dianbao" icon-class="telegram" style="float:left;margin-left: 10px"
-                      @click="gotoTgChannel"/>
-            <svg-icon class="bilibili" icon-class="bilibili" style="float:right;margin-left:10px"
-                      @click="gotoBiliBili"/>
-            <svg-icon class="youguan" icon-class="youtube" style="float:right;margin-left:10px" @click="gotoYouTuBe"/>
-            <svg-icon class="channel" icon-class="telegram" style="float:right;margin-left: 10px"
-                      @click="gotoTgChannel"/>
             <div style="text-align:center;font-size:15px">订 阅 转 换</div>
           </div>
           <el-container>
@@ -252,54 +244,12 @@
                 </el-button>
               </el-form-item>
               <el-form-item label-width="0px" style="text-align: center">
-                <el-button
-                    style="width: 250px;"
-                    type="success"
-                    icon="el-icon-video-play"
-                    @click="centerDialogVisible = true"
-                >视频教程
-                </el-button>
               </el-form-item>
             </el-form>
           </el-container>
         </el-card>
       </el-col>
     </el-row>
-    <el-dialog
-        title="请选择需要观看的视频教程"
-        :visible.sync="centerDialogVisible"
-        :show-close="false"
-        width="40vh"
-        top="30vh"
-        center>
-      <div label-width="0px" style="text-align: center">
-        <el-button
-            style="width: 200px;"
-            type="primary"
-            icon="el-icon-video-play"
-            @click="gotoBasicVideo();centerDialogVisible = false"
-        >基础视频教程
-        </el-button>
-      </div>
-      <div label-width="0px" style="text-align: center;margin: 3vh 0 2vh">
-        <el-button
-            style="width: 200px;"
-            type="danger"
-            icon="el-icon-video-play"
-            @click="gotoAdvancedVideo();centerDialogVisible = false"
-        >进阶视频教程
-        </el-button>
-      </div>
-      <div label-width="0px" style="text-align: center;margin: 3vh 0 2vh">
-        <el-button
-            style="width: 200px;"
-            type="warning"
-            icon="el-icon-download"
-            @click="toolsDown"
-        >代理工具集合
-        </el-button>
-      </div>
-    </el-dialog>
     <el-dialog
         :visible.sync="dialogUploadConfigVisible"
         :show-close="false"
@@ -474,18 +424,16 @@ export default {
           "sub.cm": "https://sub.cm/short",
         },
         customBackend: {
-          "肥羊增强型后端【vless reality+hy1+hy2】": "https://url.v1.mk",
-          "肥羊备用后端【vless reality+hy1+hy2】": "https://sub.d1.mk",
-          "つつ-多地防失联【负载均衡+国内优化】": "https://api.tsutsu.one",
-          nameless13提供: "https://www.nameless13.com",
-          subconverter作者提供: "https://sub.xeton.dev",
+          "自建加密后端": "https://hd.wilxx.com",
+          "不良林加密后端": "https://psub.888005.xyz",
+          "nameless13提供": "https://www.nameless13.com",
+          "subconverter作者提供": "https://sub.xeton.dev",
           "sub-web作者提供": "https://api.wcc.best",
           "sub作者&lhie1提供": "https://api.dler.io",
         },
         backendOptions: [
-          {value: "https://url.v1.mk"},
-          {value: "https://sub.d1.mk"},
-          {value: "https://api.tsutsu.one"},
+          {value: "https://hd.wilxx.com"},
+          {value: "https://psub.888005.xyz"},
           {value: "https://www.nameless13.com"},
           {value: "https://sub.xeton.dev"},
           {value: "https://api.wcc.best"},
@@ -889,7 +837,7 @@ export default {
       form: {
         sourceSubUrl: "",
         clientType: "",
-        customBackend: this.getUrlParam() == "" ? "https://url.v1.mk" : this.getUrlParam(),
+        customBackend: this.getUrlParam() == "" ? "自建加密后端" : this.getUrlParam(),
         shortType: "https://v1.mk/short",
         remoteConfig: "https://raw.githubusercontent.com/ACL4SSR/ACL4SSR/master/Clash/config/ACL4SSR_Online_Full_NoAuto.ini",
         excludeRemarks: "",
@@ -948,7 +896,6 @@ export default {
   mounted() {
     this.tanchuang();
     this.form.clientType = "clash";
-    this.getBackendVersion();
     this.anhei();
     let lightMedia = window.matchMedia('(prefers-color-scheme: light)');
     let darkMedia = window.matchMedia('(prefers-color-scheme: dark)');
@@ -1009,12 +956,7 @@ export default {
         window.localStorage.setItem('localTheme', 'light-mode');
       }
     },
-    tanchuang() {
-      this.$alert(`<div style="text-align:center;font-size:15px"><strong><span style="font-size:20px;color:red">apiurl.v1.mk已被蔷，请更换最新的url.v1.mk</span></strong></br><strong><span style="font-size:20px">本站官方TG交流群：</span><span><a href="https://t.me/feiyangdigital" target="_blank" style="color:red;font-size:20px;text-decoration:none">点击加入</a></span></strong></br><strong><span style="font-size:20px">IEPL高端机场（<span style="color:blue">原生支持各种流媒体</span>）：</span><span><a href="https://www.mcwy.org" style="color:red;font-size:20px;text-decoration:none">点击注册</a></span></strong></br><strong><span style="font-size:20px">奈飞、ChatGPT合租（<span style="color:blue">优惠码：feiyang</span>）：</span><span><a href="https://hezu.v1.mk/" style="color:red;font-size:20px;text-decoration:none">点击上车</a></span></strong></br><strong><span style="font-size:20px">115蓝光4K原盘内部资源群：</span><span><a href="https://115.metshop.top" target="_blank" style="color:red;font-size:20px;text-decoration:none">点击查看</a></span></strong></br><strong><span style="font-size:20px">IOS外区应用代购：</span><span><a href="https://fk.myue.club" style="color:red;font-size:20px;text-decoration:none">点击查看</a></span></strong></br>本站服务器赞助机场-牧场物语，是一家拥有BGP中继+IEPL企业级内网专线的高端机场，适合各个价位要求的用户，牧场物语采用最新的奈飞非自制剧解决方案，出口随机更换IP，确保尽可能的每个用户可以用上独立IP，以此来稳定解决奈飞非自制剧的封锁，并推出7*24小时奈飞非自制剧节点自动检测系统，用户再也不用自己手动一个个的乱试节点了，目前牧场的新加坡，台湾等节区域点均可做到24H稳定非自制剧观看！</br></div>`, '信息面板', {
-        confirmButtonText: '确定',
-        dangerouslyUseHTMLString: true,
-        customClass: 'msgbox'
-      });
+    tanchuang() {;
     },
     onCopy() {
       this.$message.success("已复制");
@@ -1399,13 +1341,6 @@ export default {
           .get(
               this.form.customBackend + "/version"
           )
-          .then(res => {
-            this.backendVersion = res.data.replace(/backend\n$/gm, "");
-            this.backendVersion = this.backendVersion.replace("subconverter", "SubConverter");
-            let a = this.form.customBackend.indexOf("url.v1.mk") !== -1 || this.form.customBackend.indexOf("sub.d1.mk") !== -1;
-            let b = this.form.customBackend.indexOf("127.0.0.1") !== -1;
-            a ? this.$message.success(`${this.backendVersion}` + "肥羊负载均衡增强版后端，已屏蔽免费节点池（会返回403），额外支持vless reality+hysteria+hysteria2订阅转换") : b ? this.$message.success(`${this.backendVersion}` + "本地局域网自建版后端") : this.$message.success(`${this.backendVersion}` + "官方原版后端不支持vless/hysteria订阅转换");
-          })
           .catch(() => {
             this.$message.error("请求SubConverter版本号返回数据失败，该后端不可用！");
           });
